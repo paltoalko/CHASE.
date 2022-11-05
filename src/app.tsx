@@ -19,7 +19,7 @@ function App() {
             <Route path="/careers" element={<Careers />}></Route>
             <Route path="/desktop" element={<Desktop />}></Route>
           </Routes>
-          <Footer />
+          {/* <Footer /> */}
         </Router>
       </ThemeProvider>
     </Box>

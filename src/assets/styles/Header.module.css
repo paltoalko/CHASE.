@@ -2,24 +2,37 @@
   .buttonsContainer {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     padding: 2em;
-    background-color: #52475a34;
+    transition: 1s;
+    background-color: #7b6c85;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 30%;
   }
 
   .menuButton {
-    position: absolute;
+    position: fixed;
     top: 0.25em;
     right: 0.25em;
     z-index: 100;
-    font-size: 2.5em;
+    font-size: 2.5em !important;
   }
 
   .menuContainer {
-    position: fixed;
     right: 0;
   }
   .logo {
     padding: 1em;
+  }
+
+  .smallHeader {
+    background-color: #52475a;
+    width: 100%;
+    z-index: 9999;
   }
 }
 

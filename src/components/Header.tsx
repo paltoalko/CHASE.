@@ -6,7 +6,7 @@ import {
   Fade,
   Slide,
 } from '@mui/material';
-import React, { MutableRefObject, useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { ReactComponent as Logo } from '../assets/svg/logo.svg';
@@ -28,7 +28,7 @@ const HeaderLink: React.FC<LinkProps> = ({ path, title, onClick }) => {
       className={styles.headerButton}
       onClick={onClick}
     >
-      <Typography variant="h6" fontWeight="light">
+      <Typography variant="h6" fontWeight="light" textAlign="center">
         {title}
       </Typography>
     </Button>
@@ -36,6 +36,7 @@ const HeaderLink: React.FC<LinkProps> = ({ path, title, onClick }) => {
 };
 
 const Header: React.FC<{}> = ({}) => {
+  // fix transition effect
   const matches = useMediaQuery('(min-width:426px)');
   const [open, setOpen] = useState(true);
   const ref = useRef(null);
@@ -67,7 +68,7 @@ const Header: React.FC<{}> = ({}) => {
       </Box>
     </Box>
   ) : (
-    <Box ref={ref}>
+    <Box ref={ref} className={styles.smallHeader}>
       {open ? (
         <MenuIcon
           color="primary"
@@ -83,8 +84,9 @@ const Header: React.FC<{}> = ({}) => {
           />
         </Fade>
       )}
+
       <Logo className={styles.logo} />
-      <Slide in={!open} direction="down" mountOnEnter unmountOnExit>
+      <Slide in={!open} direction="left" mountOnEnter unmountOnExit>
         <Box className={styles.buttonsContainer}>
           <HeaderLink path="/" title="Home" onClick={() => handleClick()} />
           <HeaderLink

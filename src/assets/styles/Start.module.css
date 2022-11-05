@@ -1,11 +1,77 @@
-.wave {
-  width: 100%;
+@media only screen and (max-width: 480px) {
+  .homeContainer {
+    display: flex;
+    flex-direction: column;
+  }
+  .topContainer {
+    margin-top: 1em;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+  }
+
+  .buttonBox {
+    display: flex;
+    padding: 1em;
+    gap: 1em;
+  }
+
+  .svg {
+    position: absolute;
+    bottom: 0;
+    z-index: -10;
+  }
+
+  .subheader,
+  .subheader2 {
+    font-size: 1em !important;
+    text-align: center;
+  }
+
+  .subheader2 {
+    margin-bottom: 1.5em;
+  }
+
+  .wavesContainer {
+    position: relative;
+    margin-top: 7em;
+  }
+
+  .header {
+    padding: 1em;
+    display: flex;
+  }
+
+  .buttonsContainer {
+    margin-left: auto;
+  }
+
+  .iphone {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.85;
+  }
+
+  .activity {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 2em;
+  }
 }
 
-.homeContainer {
-  margin-top: 1vh;
-}
+@media only screen and (min-width: 768px) {
+  .header {
+    padding: 1em;
+    display: flex;
+  }
 
-.topContainer {
-  text-align: center;
+  .buttonsContainer {
+    margin-left: auto;
+  }
 }
