@@ -8,6 +8,7 @@ import { LogoAppleAppstore, LogoGooglePlaystore } from 'react-ionicons';
 import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
 import ActivityBox from '../components/start/ActivityBox';
 import ReviewBox from '../components/start/ReviewsBox';
+import NotificationsBox from '../components/start/NotificationsBox';
 
 interface ButtonProps {
   store: string;
@@ -88,6 +89,7 @@ const Start: React.FC<{}> = ({}) => {
       </Box>
       <ActivityBox />
       <ReviewBox />
+      <NotificationsBox />
     </Box>
   );
 };

@@ -12,10 +12,12 @@
     right: 0;
     height: 100%;
     width: 30%;
+    z-index: 1000;
   }
 
   .menuButton {
     position: fixed;
+    z-index: 99999 !important;
     top: 0.25em;
     right: 0.25em;
     z-index: 100;
@@ -32,7 +34,6 @@
   .smallHeader {
     background-color: #52475a;
     width: 100%;
-    z-index: 9999;
   }
 }
 
