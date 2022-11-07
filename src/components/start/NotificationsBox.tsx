@@ -31,7 +31,7 @@ const NotificationsBox: React.FC<{}> = ({}) => {
         color="primary"
         className={styles.subheader}
       >
-        Be productive at all times.
+        Don't worry, we got you.
       </Typography>
       <Box className={styles.notificationBox}>
         <img src={Notification2} />

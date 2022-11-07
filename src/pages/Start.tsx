@@ -48,7 +48,7 @@ const Start: React.FC<{}> = ({}) => {
           Be productive for once.
         </Typography>
         <Box className={styles.iphone}>
-          <Iphone />
+          <Iphone className={styles.svgIphone} />
         </Box>
         <Box className={styles.buttonBox}>
           <StoreButton
