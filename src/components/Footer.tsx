@@ -30,6 +30,7 @@ const Footer: React.FC<{}> = ({}) => {
   return (
     <Box className={styles.container}>
       <Waves className={styles.svg} />
+      <Box className={styles.overlay} />
       <Box className={styles.buttonsContainer}>
         {matches && (
           <Box className={styles.linksContainer}>
