@@ -4,7 +4,7 @@ import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
 import { ReactComponent as Study } from '../../assets/svg/studying.svg';
 import { ReactComponent as Work } from '../../assets/svg/working.svg';
 import { ReactComponent as Programming } from '../../assets/svg/programming.svg';
-import styles from '../../assets/styles/Start.module.css';
+import styles from '../../assets/styles/ActivityBox.module.css';
 
 interface BoxProps {
   title: string;
@@ -15,7 +15,12 @@ const Activity: React.FC<BoxProps> = ({ title, icon }) => {
   return (
     <Box className={styles.activity}>
       {icon}
-      <Typography variant="h6" fontWeight={300} color="primary">
+      <Typography
+        variant="h6"
+        fontWeight={300}
+        color="primary"
+        className={styles.title}
+      >
         {title}
       </Typography>
     </Box>
@@ -25,9 +30,12 @@ const Activity: React.FC<BoxProps> = ({ title, icon }) => {
 const ActivityBox: React.FC<{}> = () => {
   return (
     <Box className={styles.activities}>
-      <Activity icon={<Work />} title="Working" />
-      <Activity icon={<Study />} title="Studying" />
-      <Activity icon={<Programming />} title="Programming" />
+      <Activity icon={<Work className={styles.svg} />} title="Working" />
+      <Activity icon={<Study className={styles.svg} />} title="Studying" />
+      <Activity
+        icon={<Programming className={styles.svg} />}
+        title="Programming"
+      />
     </Box>
   );
 };
