@@ -28,26 +28,28 @@ const HeaderLink: React.FC<LinkProps> = ({ path, title }) => {
 const Footer: React.FC<{}> = ({}) => {
   const matches = useMediaQuery('(min-width:480px)');
   return (
-    <Box className={styles.container}>
-      <Waves className={styles.svg} />
-      <Box className={styles.overlay} />
-      <Box className={styles.buttonsContainer}>
-        {matches && (
-          <Box className={styles.linksContainer}>
-            <HeaderLink path="/desktop" title="Desktop Version" />
-            <HeaderLink path="/contact" title="Contact" />
-            <HeaderLink path="/careers" title="Careers" />
-          </Box>
-        )}
+    <Box className={styles.footer}>
+      <Box className={styles.container}>
+        <Waves className={styles.svg} />
+        <Box className={styles.overlay} />
+        <Box className={styles.buttonsContainer}>
+          {matches && (
+            <Box className={styles.linksContainer}>
+              <HeaderLink path="/desktop" title="Desktop Version" />
+              <HeaderLink path="/contact" title="Contact" />
+              <HeaderLink path="/careers" title="Careers" />
+            </Box>
+          )}
 
-        <Box className={styles.authorContainer}>
-          <Typography
-            variant={matches ? 'body1' : 'body2'}
-            fontWeight="light"
-            color="primary"
-          >
-            Copyright © 2022. All rights reserved. MWES
-          </Typography>
+          <Box className={styles.authorContainer}>
+            <Typography
+              variant={matches ? 'body1' : 'body2'}
+              fontWeight="light"
+              color="primary"
+            >
+              Copyright © 2022. All rights reserved. MWES
+            </Typography>
+          </Box>
         </Box>
       </Box>
     </Box>

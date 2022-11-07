@@ -9,6 +9,10 @@
   align-items: flex-end;
 }
 
+.footer {
+  margin-top: auto !important;
+}
+
 .overlay {
   position: absolute;
   background-color: #01121f;
