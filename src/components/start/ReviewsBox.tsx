@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Typography, IconButton } from '@mui/material';
+import { Box, Typography, IconButton, useMediaQuery } from '@mui/material';
 import { ReactComponent as Wave } from '../../assets/svg/wave-review.svg';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
@@ -47,6 +47,7 @@ const Review: React.FC<BoxProps> = ({ index }) => {
 
 const ReviewBox: React.FC<{}> = () => {
   const [index, setIndex] = useState(0);
+  const matches = useMediaQuery('(min-width:480px)');
 
   const handleClick = (e) => {
     if (e.target.id === 'left') {
@@ -68,12 +69,13 @@ const ReviewBox: React.FC<{}> = () => {
     <Box className={styles.reviewsContainer}>
       <Box className={styles.headerBox}>
         <Typography
-          variant="h6"
-          fontWeight={300}
+          variant="h4"
+          fontWeight={500}
           color="primary"
           textAlign="center"
+          className={styles.header}
         >
-          Your time matters:
+          Your time matters
         </Typography>
         <Box className={styles.reviewsBox}>
           <IconButton size="small" onClick={(e) => handleClick(e)}>
@@ -82,31 +84,43 @@ const ReviewBox: React.FC<{}> = () => {
 
           <Box className={styles.reviews}>
             <Review index={index} />
-            <Box className={styles.circleBox}>
-              <Box
-                className={index == 0 ? styles.circle : styles.circleActive}
-              />
-              <Box
-                className={index == 1 ? styles.circle : styles.circleActive}
-              />
-              <Box
-                className={index == 2 ? styles.circle : styles.circleActive}
-              />
-              <Box
-                className={index == 3 ? styles.circle : styles.circleActive}
-              />
-              <Box
-                className={index == 4 ? styles.circle : styles.circleActive}
-              />
-              <Box
-                className={index == 5 ? styles.circle : styles.circleActive}
-              />
-            </Box>
+            {matches && (
+              <Box className={styles.circleBox}>
+                <Box
+                  className={index == 0 ? styles.circle : styles.circleActive}
+                />
+                <Box
+                  className={index == 1 ? styles.circle : styles.circleActive}
+                />
+                <Box
+                  className={index == 2 ? styles.circle : styles.circleActive}
+                />
+                <Box
+                  className={index == 3 ? styles.circle : styles.circleActive}
+                />
+                <Box
+                  className={index == 4 ? styles.circle : styles.circleActive}
+                />
+                <Box
+                  className={index == 5 ? styles.circle : styles.circleActive}
+                />
+              </Box>
+            )}
           </Box>
           <IconButton size="small" onClick={(e) => handleClick(e)}>
             <KeyboardArrowRightIcon className={styles.iconRight} id="right" />
           </IconButton>
         </Box>
+        {!matches && (
+          <Box className={styles.circleBox}>
+            <Box className={index == 0 ? styles.circle : styles.circleActive} />
+            <Box className={index == 1 ? styles.circle : styles.circleActive} />
+            <Box className={index == 2 ? styles.circle : styles.circleActive} />
+            <Box className={index == 3 ? styles.circle : styles.circleActive} />
+            <Box className={index == 4 ? styles.circle : styles.circleActive} />
+            <Box className={index == 5 ? styles.circle : styles.circleActive} />
+          </Box>
+        )}
       </Box>
       <Wave className={styles.svg} />
     </Box>
