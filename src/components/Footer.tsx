@@ -26,7 +26,7 @@ const HeaderLink: React.FC<LinkProps> = ({ path, title }) => {
 };
 
 const Footer: React.FC<{}> = ({}) => {
-  const matches = useMediaQuery('(min-width:480px)');
+  const matches = useMediaQuery('(min-width:768px)');
   return (
     <Box className={styles.footer}>
       <Box className={styles.container}>

@@ -1,0 +1,51 @@
+.svg {
+  width: 700px;
+  height: auto;
+}
+
+.topContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 1em;
+}
+
+.icon {
+  color: #cdb3c1;
+  margin-right: 1em;
+  font-size: 1.5em;
+}
+
+.contactCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 1em;
+}
+
+.cardTop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.headers {
+  margin: 5em;
+}
+@media only screen and (max-width: 600px) {
+  .headers {
+    text-align: center;
+    margin: 2em;
+  }
+  .svg {
+    width: 400px;
+  }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 960px) {
+  .svg {
+    width: 500px;
+  }
+}
