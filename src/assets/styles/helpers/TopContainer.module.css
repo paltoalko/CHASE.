@@ -1,0 +1,18 @@
+.topContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 1em;
+}
+
+.headers {
+  margin: 5em;
+}
+
+@media only screen and (max-width: 600px) {
+  .headers {
+    text-align: center;
+    margin: 2em;
+  }
+}

@@ -6,6 +6,7 @@ import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
 import PlaceOutlinedIcon from '@mui/icons-material/PlaceOutlined';
 import AlternateEmailOutlinedIcon from '@mui/icons-material/AlternateEmailOutlined';
 import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
+import TopContainer from '../components/helpers/TopContainer';
 interface ContactProps {
   title: string;
   text: string;
@@ -40,17 +41,11 @@ const ContactBox: React.FC<ContactProps> = ({ title, text, icon, onPress }) => {
 const Contact: React.FC<{}> = ({}) => {
   return (
     <Box className={styles.container}>
-      <Box className={styles.topContainer}>
-        <Box className={styles.headers}>
-          <Typography variant="h3" fontWeight="bold" color="primary">
-            Contact
-          </Typography>
-          <Typography variant="h4" fontWeight={400} color="primary">
-            How to reach us
-          </Typography>
-        </Box>
-        <ContactSvg className={styles.svg} />
-      </Box>
+      <TopContainer
+        text="How to reach us"
+        title="Contact"
+        icon={<ContactSvg className={styles.svg} />}
+      />
       <Box className={styles.contactContainer}>
         <ContactBox
           title="GIVE US A VISIT"
