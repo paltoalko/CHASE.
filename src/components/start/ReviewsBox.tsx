@@ -47,7 +47,7 @@ const Review: React.FC<BoxProps> = ({ index }) => {
 
 const ReviewBox: React.FC<{}> = () => {
   const [index, setIndex] = useState(0);
-  const matches = useMediaQuery('(min-width:480px)');
+  const matches = useMediaQuery('(max-width:540px)');
 
   const handleClick = (e) => {
     if (e.target.id === 'left') {
