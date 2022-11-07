@@ -3,6 +3,9 @@
   bottom: 0;
   z-index: -10;
 }
+.iphone {
+  margin: 1em;
+}
 
 .wavesContainer {
   margin-top: 50vh;
@@ -13,10 +16,10 @@
   margin-top: 1em;
   padding: 1em;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   z-index: 999;
+  flex-wrap: wrap;
 }
 
 .subheader,
@@ -32,6 +35,15 @@
   flex-direction: column;
 }
 
+.buttonBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+  gap: 1em;
+}
+
 .buttonsContainer {
   margin-left: auto;
 }
@@ -41,16 +53,14 @@
   display: flex;
 }
 
+/* .buttons {
+  text-align: center;
+} */
+
 @media only screen and (max-width: 480px) {
   .homeContainer {
     display: flex;
     flex-direction: column;
-  }
-
-  .buttonBox {
-    display: flex;
-    padding: 1em;
-    gap: 1em;
   }
 
   .subheader,
@@ -73,15 +83,44 @@
     align-items: center;
     opacity: 0.85;
   }
+  .svgIphone {
+    width: 150px;
+    height: auto;
+  }
+
+  .buttonBox {
+    text-align: center;
+  }
 }
 
 @media only screen and (min-width: 480px) and (max-width: 600px) {
   .subheader2 {
     margin-bottom: 3vh !important;
   }
+  .svgIphone {
+    width: 300px;
+    height: auto;
+  }
+  .wavesContainer {
+    margin-top: 15vh;
+  }
 }
 @media only screen and (min-width: 600px) and (max-width: 900px) {
   .subheader2 {
     margin-bottom: 5vh !important;
+  }
+
+  .svgIphone {
+    width: 300px;
+    height: auto;
+  }
+  .wavesContainer {
+    margin-top: 30vh;
+  }
+}
+@media only screen and (min-width: 900px) and (max-width: 1100px) {
+  .svgIphone {
+    width: 350px;
+    height: auto;
   }
 }

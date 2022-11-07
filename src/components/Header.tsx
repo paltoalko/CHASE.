@@ -37,7 +37,7 @@ const HeaderLink: React.FC<LinkProps> = ({ path, title, onClick }) => {
 
 const Header: React.FC<{}> = ({}) => {
   // fix transition effect
-  const matches = useMediaQuery('(min-width:767px)');
+  const matches = useMediaQuery('(min-width:768px)');
   const [open, setOpen] = useState(true);
   const ref = useRef(null);
 

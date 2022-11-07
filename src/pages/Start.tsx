@@ -25,9 +25,24 @@ const StoreButton: React.FC<ButtonProps> = ({
 }) => {
   return (
     <Button onClick={onPress}>
-      <Box>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
         {icon}
-        <Box>
+        <Box
+          sx={{
+            ml: '1em',
+            minWidth: '150px',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexDirection: 'column',
+          }}
+        >
           <Typography variant="subtitle2" fontWeight="light" lineHeight="1.5">
             {title}
           </Typography>
@@ -44,28 +59,34 @@ const Start: React.FC<{}> = ({}) => {
   return (
     <Box className={styles.homeContainer}>
       <Box className={styles.topContainer}>
-        <Typography variant="h4" fontWeight="bold" color="primary">
-          Be productive for once.
-        </Typography>
+        <Box className={styles.buttonBox}>
+          <Typography variant="h3" fontWeight="bold" color="primary">
+            Be productive for once.
+          </Typography>
+          <Box className={styles.buttons}>
+            <StoreButton
+              store="AppStore"
+              title="Download on the"
+              onPress={() => console.log('lol')}
+              icon={
+                <LogoAppleAppstore color={'#ffffff'} height="3em" width="3em" />
+              }
+            />
+            <StoreButton
+              store="Google Play"
+              title="Get it on"
+              icon={
+                <LogoGooglePlaystore
+                  color={'#ffffff'}
+                  height="3em"
+                  width="3em"
+                />
+              }
+            />
+          </Box>
+        </Box>
         <Box className={styles.iphone}>
           <Iphone className={styles.svgIphone} />
-        </Box>
-        <Box className={styles.buttonBox}>
-          <StoreButton
-            store="AppStore"
-            title="Download on the"
-            onPress={() => console.log('lol')}
-            icon={
-              <LogoAppleAppstore color={'#ffffff'} height="3em" width="3em" />
-            }
-          />
-          <StoreButton
-            store="Google Play"
-            title="Get it on"
-            icon={
-              <LogoGooglePlaystore color={'#ffffff'} height="3em" width="3em" />
-            }
-          />
         </Box>
       </Box>
       <Box className={styles.wavesContainer}>
