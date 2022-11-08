@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from '../../assets/styles/helpers/PerksContainer.module.css';
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
 import { ReactComponent as Transport } from '../../assets/svg/transport.svg';
 import { ReactComponent as Bike } from '../../assets/svg/bike.svg';
@@ -12,22 +12,34 @@ import { ReactComponent as WorkingRemote } from '../../assets/svg/workingRemote.
 
 interface Iprops {
   title: string;
+  description?: string;
   svg: ReactJSXElement;
 }
 
-const ListItem: React.FC<Iprops> = ({ title, svg }) => {
+const ListItem: React.FC<Iprops> = ({ title, description, svg }) => {
   return (
     <Box className={styles.listItemMobile}>
       <Box className={styles.textBox}>
-        <Typography
-          variant="h6"
-          fontWeight={300}
-          color="primary"
-          textAlign="center"
-          className={styles.text}
-        >
-          {title}
-        </Typography>
+        <Box className={styles.text}>
+          <Typography
+            variant="h4"
+            fontWeight={600}
+            color="secondary"
+            textAlign="center"
+            className={styles.header}
+          >
+            {title}
+          </Typography>
+          <Typography
+            variant="h6"
+            fontWeight={100}
+            color="primary"
+            textAlign="center"
+            className={styles.description}
+          >
+            {description}
+          </Typography>
+        </Box>
       </Box>
 
       {svg}
@@ -39,34 +51,43 @@ const PerksContainer: React.FC<{}> = ({}) => {
   return (
     <Box className={styles.container}>
       {/* mobile view => list and browser view => reveal cursor */}
+
       <Box className={styles.listMobile}>
         <ListItem
-          title="Transport Allowance"
-          svg={<Transport className={styles.svg} />}
+          title="Remote Work"
+          description="You can work remotely anywhere from the world, we are remote first company."
+          svg={<WorkingRemote className={styles.svg} />}
         />
         <ListItem
-          title="1 USD for every mile on bike"
-          svg={<Bike className={styles.svg} />}
-        />
-        <ListItem
-          title="Full medical insurance"
+          title="Insurance"
+          description="We will cover all of your medical expenses, with us you are safe."
           svg={<Doctors className={styles.svg} />}
         />
+
         <ListItem
-          title="3000$ per annum for you education"
-          svg={<Education className={styles.svg} />}
-        />
-        <ListItem
-          title="Free access to various fitness centers"
+          title="Fitness"
+          description="We will give you allowance so you can spend up to 5k per annum for sports!"
           svg={<Fitness className={styles.svg} />}
         />
         <ListItem
-          title="100USD for every 5k steps monthly"
+          title="Education"
+          description="We value education and your constant progress, per annum everyone have 3000$ to spend on their education."
+          svg={<Education className={styles.svg} />}
+        />
+        <ListItem
+          title="Biking"
+          description="You like riding bike? Great! Now you'll be getting 1$ for every mile."
+          svg={<Bike className={styles.svg} />}
+        />
+        <ListItem
+          title="Steps"
+          description="We know that it is important to move, so for every 5k steps/month you'll get additional 100$."
           svg={<Walking className={styles.svg} />}
         />
         <ListItem
-          title="Work from anywhere"
-          svg={<WorkingRemote className={styles.svg} />}
+          title="Transport"
+          description="We care about our enviroment, so should you. All public transport expenses are covered by us."
+          svg={<Transport className={styles.svg} />}
         />
       </Box>
     </Box>
