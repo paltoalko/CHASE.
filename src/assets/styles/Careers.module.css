@@ -1,0 +1,66 @@
+.svgWave {
+  position: absolute;
+  bottom: 0;
+  z-index: -10;
+}
+
+.wavesContainer {
+  position: relative;
+  margin-top: 25vmax;
+}
+
+.subheader2 {
+  text-align: center;
+  padding-bottom: 3em;
+}
+
+@media only screen and (max-width: 480px) {
+  .wavesContainer {
+    margin-top: 7em;
+  }
+
+  .subheader,
+  .subheader2 {
+    font-size: 1em !important;
+    text-align: center;
+  }
+
+  .wavesContainer {
+    margin-top: 13vmax;
+  }
+
+  .subheader2 {
+    padding-bottom: 2em !important;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .svg {
+    width: 400px;
+    height: auto;
+  }
+  .subheader2 {
+    padding-bottom: 3vh !important;
+  }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 960px) {
+  .svg {
+    width: 500px;
+    height: auto;
+  }
+
+  .subheader2 {
+    padding-bottom: 5vh !important;
+  }
+}
+
+@media only screen and (min-width: 1700px) {
+  .wavesContainer {
+    margin-top: 25vmax;
+  }
+
+  .subheader2 {
+    padding-bottom: 10vmax !important;
+  }
+}
