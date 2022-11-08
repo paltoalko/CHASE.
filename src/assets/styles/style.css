@@ -1,5 +1,6 @@
 body {
-  background-color: #001220;
+  /* background-color: #001220; */
+  background: linear-gradient(#001220, #010104);
   margin: 0;
   padding: 0;
 }
