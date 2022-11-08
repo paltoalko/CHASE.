@@ -14,15 +14,11 @@
     "@types/node": "^18.11.3",
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
-    "flubber": "^0.4.2",
-    "polymorph-js": "^1.0.2",
-    "popmotion": "^11.0.5",
     "react": "^18.2.0",
+    "react-device-detect": "^2.2.2",
     "react-dom": "^18.2.0",
-    "react-ionicons": "^4.2.0",
     "react-router-dom": "^6.4.2",
     "react-scripts": "5.0.1",
-    "react-spring": "^9.5.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

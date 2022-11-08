@@ -1,10 +1,12 @@
 import React from 'react';
 import { ReactComponent as Waves } from '../assets/svg/waves-mobile.svg';
 import { ReactComponent as Iphone } from '../assets/svg/iphone-mobile.svg';
+import { ReactComponent as Appstore } from '../assets/svg/appstore.svg';
+import { ReactComponent as Google } from '../assets/svg/googleplay.svg';
 
 import styles from '../assets/styles/Start.module.css';
 import { Box, Button, Typography } from '@mui/material';
-import { LogoAppleAppstore, LogoGooglePlaystore } from 'react-ionicons';
+
 import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
 import ActivityBox from '../components/start/ActivityBox';
 import ReviewBox from '../components/start/ReviewsBox';
@@ -68,20 +70,12 @@ const Start: React.FC<{}> = ({}) => {
               store="AppStore"
               title="Download on the"
               onPress={() => console.log('lol')}
-              icon={
-                <LogoAppleAppstore color={'#ffffff'} height="3em" width="3em" />
-              }
+              icon={<Appstore color={'#ffffff'} height="3em" width="3em" />}
             />
             <StoreButton
               store="Google Play"
               title="Get it on"
-              icon={
-                <LogoGooglePlaystore
-                  color={'#ffffff'}
-                  height="3em"
-                  width="3em"
-                />
-              }
+              icon={<Google color={'#ffffff'} height="3em" width="3em" />}
             />
           </Box>
         </Box>
