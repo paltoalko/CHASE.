@@ -18,7 +18,7 @@ interface LinkProps {
 const HeaderLink: React.FC<LinkProps> = ({ path, title }) => {
   return (
     <Button component={Link} to={path} variant="text">
-      <Typography variant="body1" fontWeight="light">
+      <Typography variant="body1" fontWeight="light" sx={{ color: '#020304' }}>
         {title}
       </Typography>
     </Button>
@@ -45,7 +45,7 @@ const Footer: React.FC<{}> = ({}) => {
             <Typography
               variant={matches ? 'body1' : 'body2'}
               fontWeight="light"
-              color="primary"
+              sx={{ color: '#020304' }}
             >
               Copyright © 2022. All rights reserved. MWES
             </Typography>
