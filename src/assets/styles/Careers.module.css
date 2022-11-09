@@ -3,10 +3,22 @@
   bottom: 0;
   z-index: -10;
 }
+.svgWaveHeader {
+  position: absolute;
+  bottom: 0;
+  z-index: -10;
+  width: 100%;
+  height: auto;
+}
 
 .wavesContainer {
   position: relative;
   margin-top: 25vmax;
+}
+
+.subheaderWaveHeader {
+  margin: 3em !important;
+  text-align: center;
 }
 
 .subheader2 {
