@@ -1,0 +1,114 @@
+.container {
+  display: flex;
+  width: 100%;
+  height: auto;
+}
+
+.columnRight {
+  width: 50%;
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+.columnLeft {
+  padding: 2em;
+  width: 50%;
+}
+
+.taskContainer {
+  display: flex;
+  align-items: center;
+}
+.taskHeaderTime {
+  font-size: 10vmax !important;
+}
+.taskHeaderDay {
+  font-size: 7vmax !important;
+}
+.taskHeaderDate {
+  font-size: 5vmax !important;
+}
+
+.taskHeaderTime,
+.taskHeaderDay,
+.taskHeaderDate {
+  color: #ccd0d2;
+  opacity: 0.25;
+}
+.taskHeader {
+  font-size: 5vmax !important;
+  color: #ccd0d2;
+  opacity: 0.25;
+}
+
+.dateContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.task {
+  display: flex;
+  border-radius: 20px;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 60%;
+  padding: 0.5em;
+  background-color: #b2b7bb;
+  gap: 1em;
+}
+
+.taskText {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 90%;
+}
+
+.addIcon {
+  font-size: 10vmax !important;
+  color: #b2b7bb;
+}
+
+.svg {
+  width: 70px;
+  height: auto;
+}
+
+.icon {
+  font-size: 1.5vmax !important;
+  color: #19181a;
+}
+
+.title {
+  font-size: 1.5vmax !important;
+  color: rgb(20, 19, 22) !important;
+}
+
+.iconPlay {
+  font-size: 5vmax !important;
+  color: #b2b7bb;
+}
+
+.timeLeft {
+  font-size: 2.5vmax !important;
+}
+
+.totalTimeLeft {
+  opacity: 0.7;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400;
+
+  box-shadow: 24;
+  padding: 4;
+}
