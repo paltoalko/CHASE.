@@ -1,94 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styles from '../assets/styles/Desktop.module.css';
 import {
   Box,
   Button,
   Typography,
-  IconButton,
   Backdrop,
   Fade,
   Modal,
+  ListItem,
 } from '@mui/material';
-import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
-import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
-import MoreTimeOutlinedIcon from '@mui/icons-material/MoreTimeOutlined';
-import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
-import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded';
-import StopRoundedIcon from '@mui/icons-material/StopRounded';
-import TuneIcon from '@mui/icons-material/Tune';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
-import { ReactComponent as Fitness } from '../assets/svg/fitness.svg';
 import TaskForm from 'components/Desktop/TaskForm';
 import { iconData } from '../components/helpers/icons';
 import { calculateTotalTime } from 'components/helpers/timeCounter';
-
-interface TaskProps {
-  title: string;
-  icon?: ReactJSXElement;
-  iconRight?: ReactJSXElement;
-  timeCompleted: string;
-  timeLeft: string;
-  active: boolean;
-  setActive: () => void;
-}
-
-const task = { name: '', timeComplete: '', timeLeft: '', icon: '' };
-
-const Task: React.FC<TaskProps> = ({
-  title,
-  icon,
-  iconRight,
-  timeCompleted,
-  timeLeft,
-  active,
-  setActive,
-}) => {
-  return (
-    <Box className={styles.taskContainer}>
-      <Box className={styles.task}>
-        {icon}
-        <Box className={styles.taskText}>
-          <Typography fontWeight={300} className={styles.title}>
-            {title}
-          </Typography>
-        </Box>
-        <Box>
-          {/* <Typography
-            variant="body2"
-            fontWeight={200}
-            className={styles.timeText}
-          >
-            Time left: {timeLeft}h
-          </Typography>
-          <Typography
-            variant="body2"
-            fontWeight={200}
-            className={styles.timeText}
-          >
-            Time Completed: {timeCompleted}h
-          </Typography> */}
-        </Box>
-        {/* <Box className={styles.options}>
-            <EditOutlinedIcon color="primary" />
-            <MoreTimeOutlinedIcon color="primary" />
-            <DeleteOutlineOutlinedIcon color="primary" />
-          </Box> */}
-        <IconButton size="small">
-          <TuneIcon className={styles.icon} />
-        </IconButton>
-      </Box>
-
-      {active ? (
-        <PlayArrowRoundedIcon className={styles.iconPlay} onClick={setActive} />
-      ) : (
-        <StopRoundedIcon className={styles.iconPlay} onClick={setActive} />
-      )}
-    </Box>
-  );
-};
+import { Task, TaskActive } from 'components/Desktop/Task';
 
 const Desktop: React.FC<{}> = () => {
-  const [timeLeft, setTimeLeft] = useState(9);
   const [timeCompleted, setTimeCompleted] = useState(3);
   const [dateState, setDateState] = useState(new Date());
   const [open, setOpen] = useState(false);
@@ -102,6 +29,7 @@ const Desktop: React.FC<{}> = () => {
       return [];
     }
   });
+  const [currentTask, setCurrentTask] = useState();
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -115,13 +43,21 @@ const Desktop: React.FC<{}> = () => {
     localStorage.setItem('tasks', JSON.stringify(tasks));
   }, [tasks]);
 
-  const handleActive = (id) => {
-    console.log(id, 'start');
+  const setActive = (id: number) => {
+    setCurrentTask(null);
+    const updatedList = tasks.map((task) => {
+      if (task.id == id) {
+        if (task.active == false) {
+          setCurrentTask({ ...task, active: !task.active });
+        }
+        return { ...task, active: !task.active };
+      }
+      return { ...task, active: false };
+    });
+    setTasks(updatedList);
   };
 
   const newTaskHandler = (data) => {
-    console.log(data);
-
     const task = {
       id: Date.now(),
       title: data.title,
@@ -146,41 +82,50 @@ const Desktop: React.FC<{}> = () => {
     }
   };
 
+  console.log(currentTask);
+
   return (
     <Box className={styles.container}>
       <Box className={styles.columnLeft}>
-        <Box className={styles.timeContainer}>
-          <Typography
-            color="primary"
-            fontWeight={200}
-            className={styles.timeLeft}
-          >
-            Time left: <strong>{timeLeft}h</strong>
-          </Typography>
-          <Typography
-            color="primary"
-            fontWeight={200}
-            className={styles.totalTimeLeft}
-          >
-            Total time left: <strong>{timeLeft}h</strong>
-          </Typography>
-          <Typography
-            color="primary"
-            fontWeight={200}
-            className={styles.timeLeft}
-          >
-            Time completed: <strong>{timeCompleted}h</strong>
-          </Typography>
-          <Typography
-            color="primary"
-            fontWeight={200}
-            className={styles.totalTimeLeft}
-          >
-            Total time completed: <strong>{timeLeft}h</strong>
-          </Typography>
-        </Box>
-
         <Box>
+          {currentTask && (
+            <Box>
+              <Typography
+                variant="body1"
+                fontWeight={700}
+                className={styles.taskHeader}
+              >
+                Task active
+              </Typography>
+
+              <Typography
+                color="primary"
+                fontWeight={200}
+                className={styles.timeLeft}
+              >
+                Time left:{' '}
+                <strong>
+                  {currentTask.hours}h {currentTask.minutes}m
+                </strong>
+              </Typography>
+              <Typography
+                color="primary"
+                fontWeight={200}
+                className={styles.timeLeft}
+              >
+                Time completed: <strong>{timeCompleted}h</strong>
+              </Typography>
+              <TaskActive
+                title={currentTask.title}
+                icon={displayIcon(currentTask.icon)}
+                id={currentTask.id}
+                setActive={setActive}
+                active={currentTask.active}
+                key={currentTask.id}
+              />
+            </Box>
+          )}
+
           <Typography
             variant="body1"
             fontWeight={700}
@@ -188,14 +133,27 @@ const Desktop: React.FC<{}> = () => {
           >
             Tasks
           </Typography>
+          <Typography
+            color="primary"
+            fontWeight={200}
+            className={styles.totalTimeLeft}
+          >
+            Total time left: <strong>{calculateTotalTime(tasks)}</strong>
+          </Typography>
+          <Typography
+            color="primary"
+            fontWeight={200}
+            className={styles.totalTimeLeft}
+          >
+            Total time completed: <strong>{calculateTotalTime(tasks)}</strong>
+          </Typography>
           {tasks.map((task) => (
             <Task
               title={task.title}
-              active={task.active}
               icon={displayIcon(task.icon)}
-              timeCompleted="2:33"
-              timeLeft="2:07"
-              setActive={handleActive(task.id)}
+              id={task.id}
+              setActive={setActive}
+              active={task.active}
               key={task.id}
             />
           ))}
