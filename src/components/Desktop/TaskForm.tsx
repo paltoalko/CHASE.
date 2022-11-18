@@ -42,6 +42,7 @@ const TaskForm: React.FC<TaskProps> = ({
       ? changeTask(data, preloadedValues.id)
       : newTaskHandler(data);
     reset(data);
+    handleExit();
   };
 
   const onSubmit = (data) => handleClick(data);
@@ -185,7 +186,6 @@ const TaskForm: React.FC<TaskProps> = ({
             color="secondary"
             type="submit"
             size="large"
-            onClick={() => handleExit()}
           >
             Zapisz
           </Button>
