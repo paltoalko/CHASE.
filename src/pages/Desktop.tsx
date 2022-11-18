@@ -8,11 +8,15 @@ import {
   Fade,
   Modal,
   ListItem,
+  Slide,
 } from '@mui/material';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import TaskForm from 'components/Desktop/TaskForm';
 import { iconData } from '../components/helpers/icons';
-import { calculateTotalTime } from 'components/helpers/timeCounter';
+import {
+  calculateTotalTime,
+  calculateDoneTime,
+} from 'components/helpers/timeCounter';
 import { Task, TaskActive } from 'components/Desktop/Task';
 
 const Desktop: React.FC<{}> = () => {
@@ -26,35 +30,76 @@ const Desktop: React.FC<{}> = () => {
     if (savedTasks) {
       return JSON.parse(savedTasks);
     } else {
-      return [];
+      return;
     }
   });
-  const [currentTask, setCurrentTask] = useState();
+  const [currentTask, setCurrentTask] = useState(() => {
+    const savedTasks = localStorage.getItem('currentTask');
 
+    if (savedTasks) {
+      return JSON.parse(savedTasks);
+    } else {
+      return;
+    }
+  });
+  const interval = useRef(null);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [doneTime, setDoneTime] = useState<number>(0);
 
   useEffect(() => {
-    setInterval(() => setDateState(new Date()), 60000);
+    currentTask && startTimer(currentTask);
+  }, []);
+
+  useEffect(() => {
+    setInterval(() => setDateState(new Date()), 1000);
     calculateTotalTime(tasks);
+    // update task time adn save it
   }, []);
 
   useEffect(() => {
     localStorage.setItem('tasks', JSON.stringify(tasks));
+    localStorage.setItem('currentTask', JSON.stringify(currentTask));
   }, [tasks]);
 
   const setActive = (id: number) => {
-    setCurrentTask(null);
+    currentTask && ((currentTask.active = false), startTimer(currentTask));
     const updatedList = tasks.map((task) => {
       if (task.id == id) {
         if (task.active == false) {
-          setCurrentTask({ ...task, active: !task.active });
+          const taskActive = { ...task, active: !task.active };
+          setCurrentTask(taskActive);
+          startTimer(taskActive);
+        } else if (task.active == true) {
+          const taskActive = { ...task, active: !task.active };
+          setCurrentTask(null);
+          startTimer(taskActive);
         }
         return { ...task, active: !task.active };
       }
       return { ...task, active: false };
     });
+
     setTasks(updatedList);
+  };
+
+  const startTimer = (task) => {
+    if (task.active == true) {
+      let time = 0;
+      interval.current = setInterval(() => {
+        time++;
+        setDoneTime(time);
+
+        console.log(doneTime);
+      }, 1000);
+
+      // if done time is > 60 min add 1 hour of done
+      console.log('start Task', task);
+    } else if (task.active == false) {
+      console.log(doneTime);
+      clearInterval(interval.current);
+      console.log('stop task', task);
+    }
   };
 
   const newTaskHandler = (data) => {
@@ -63,6 +108,8 @@ const Desktop: React.FC<{}> = () => {
       title: data.title,
       hours: data.hours,
       minutes: data.minutes,
+      hoursDone: 0,
+      minutesDone: 0,
       active: false,
       icon: data.icon,
     };
@@ -81,8 +128,6 @@ const Desktop: React.FC<{}> = () => {
       return <Svg className={styles.svg} />;
     }
   };
-
-  console.log(currentTask);
 
   return (
     <Box className={styles.container}>
@@ -113,14 +158,17 @@ const Desktop: React.FC<{}> = () => {
                 fontWeight={200}
                 className={styles.timeLeft}
               >
-                Time completed: <strong>{timeCompleted}h</strong>
+                Time completed:{' '}
+                <strong>
+                  {currentTask.hoursDone}h {currentTask.minutesDone}m
+                </strong>
               </Typography>
+
               <TaskActive
                 title={currentTask.title}
                 icon={displayIcon(currentTask.icon)}
                 id={currentTask.id}
                 setActive={setActive}
-                active={currentTask.active}
                 key={currentTask.id}
               />
             </Box>
@@ -145,8 +193,9 @@ const Desktop: React.FC<{}> = () => {
             fontWeight={200}
             className={styles.totalTimeLeft}
           >
-            Total time completed: <strong>{calculateTotalTime(tasks)}</strong>
+            Total time completed: <strong>{calculateDoneTime(tasks)}</strong>
           </Typography>
+
           {tasks.map((task) => (
             <Task
               title={task.title}
