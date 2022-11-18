@@ -30,7 +30,7 @@ const Task: React.FC<TaskProps> = ({ title, icon, id, active, setActive }) => {
   return (
     !active && (
       <Box className={styles.taskContainer}>
-        <Box className={styles.task}>
+        <Box className={styles.task} boxShadow={10}>
           {icon}
           <Box className={styles.taskText}>
             <Typography fontWeight={300} className={styles.title}>
@@ -43,58 +43,6 @@ const Task: React.FC<TaskProps> = ({ title, icon, id, active, setActive }) => {
           </IconButton>
         </Box>
 
-        {active ? (
-          <IconButton
-            onClick={() => {
-              setActive(id);
-            }}
-            key={id}
-          >
-            <StopRoundedIcon className={styles.iconPlay} />
-          </IconButton>
-        ) : (
-          <IconButton
-            onClick={() => {
-              setActive(id);
-            }}
-            key={id}
-          >
-            <PlayArrowRoundedIcon className={styles.iconPlay} />
-          </IconButton>
-        )}
-      </Box>
-    )
-  );
-};
-
-const TaskActive: React.FC<TaskProps> = ({
-  title,
-  icon,
-  id,
-  active,
-  setActive,
-}) => {
-  return (
-    <Box className={styles.taskContainer}>
-      <Box className={styles.task}>
-        {icon}
-        <Box className={styles.taskText}>
-          <Typography fontWeight={300} className={styles.title}>
-            {title}
-          </Typography>
-        </Box>
-      </Box>
-
-      {active ? (
-        <IconButton
-          onClick={() => {
-            setActive(id);
-          }}
-          key={id}
-        >
-          <StopRoundedIcon className={styles.iconPlay} />
-        </IconButton>
-      ) : (
         <IconButton
           onClick={() => {
             setActive(id);
@@ -103,7 +51,31 @@ const TaskActive: React.FC<TaskProps> = ({
         >
           <PlayArrowRoundedIcon className={styles.iconPlay} />
         </IconButton>
-      )}
+      </Box>
+    )
+  );
+};
+
+const TaskActive: React.FC<TaskProps> = ({ title, icon, id, setActive }) => {
+  return (
+    <Box className={styles.taskContainer}>
+      <Box className={styles.taskActive} boxShadow={10}>
+        {icon}
+        <Box className={styles.taskText}>
+          <Typography fontWeight={300} className={styles.title}>
+            {title}
+          </Typography>
+        </Box>
+      </Box>
+
+      <IconButton
+        onClick={() => {
+          setActive(id);
+        }}
+        key={id}
+      >
+        <StopRoundedIcon className={styles.iconStop} />
+      </IconButton>
     </Box>
   );
 };
