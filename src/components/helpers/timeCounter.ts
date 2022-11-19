@@ -43,4 +43,22 @@ export const calculateDoneTime = (tasks) => {
   return time;
 };
 
+export const calculateTime = (task, time) => {
+  const taskTime = task.minutes + task.hours * 60;
+  const minutes = time + task.minutesDone + task.hoursDone * 60;
+  const minutesLeft = taskTime - time;
+  const taskLeftMinutes = minutes % 60;
+  const taskLeftHours = Math.floor(minutes / 60);
+  const taskCompletedMinutes = minutesLeft % 60;
+  const taskCompletedHours = Math.floor(minutesLeft / 60);
+
+  return {
+    ...task,
+    minutes: taskCompletedMinutes,
+    hours: taskCompletedHours,
+    minutesDone: taskLeftMinutes,
+    hoursDone: taskLeftHours,
+  };
+};
+
 // after every minu

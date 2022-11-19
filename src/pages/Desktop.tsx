@@ -16,6 +16,7 @@ import { iconData } from '../components/helpers/icons';
 import {
   calculateTotalTime,
   calculateDoneTime,
+  calculateTime,
 } from 'components/helpers/timeCounter';
 import { Task, TaskActive } from 'components/Desktop/Task';
 
@@ -27,35 +28,41 @@ const Desktop: React.FC<{}> = () => {
   const [tasks, setTasks] = useState(() => {
     const savedTasks = localStorage.getItem('tasks');
 
-    if (savedTasks) {
+    if (savedTasks != undefined) {
       return JSON.parse(savedTasks);
     } else {
-      return;
+      return [];
     }
   });
   const [currentTask, setCurrentTask] = useState(() => {
     const savedTasks = localStorage.getItem('currentTask');
 
-    if (savedTasks) {
+    if (savedTasks != undefined) {
       return JSON.parse(savedTasks);
     } else {
-      return;
+      return [];
     }
   });
+
   const interval = useRef(null);
+  const [time, setTime] = useState<number>();
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [doneTime, setDoneTime] = useState<number>(0);
 
   useEffect(() => {
-    currentTask && startTimer(currentTask);
+    currentTask && currentTask.length != 0 && startTimer(currentTask);
   }, []);
 
   useEffect(() => {
     setInterval(() => setDateState(new Date()), 1000);
-    calculateTotalTime(tasks);
-    // update task time adn save it
   }, []);
+
+  useEffect(() => {
+    if (currentTask && currentTask.minutes + currentTask.hours == 0) {
+      setActive(currentTask.id);
+      alert('Task Completed, add more time if needed');
+    }
+  }, [currentTask]);
 
   useEffect(() => {
     localStorage.setItem('tasks', JSON.stringify(tasks));
@@ -63,7 +70,6 @@ const Desktop: React.FC<{}> = () => {
   }, [tasks]);
 
   const setActive = (id: number) => {
-    currentTask && ((currentTask.active = false), startTimer(currentTask));
     const updatedList = tasks.map((task) => {
       if (task.id == id) {
         if (task.active == false) {
@@ -84,21 +90,30 @@ const Desktop: React.FC<{}> = () => {
   };
 
   const startTimer = (task) => {
+    setTime(0);
+    let displayedTime = 0;
+
     if (task.active == true) {
-      let time = 0;
       interval.current = setInterval(() => {
-        time++;
-        setDoneTime(time);
+        const updatedList =
+          tasks &&
+          tasks.map((el) => {
+            if (el.id == task.id) {
+              setTime((prevTime) => prevTime + 1);
+              displayedTime++;
+              const updatedTask = calculateTime(task, displayedTime);
+              setCurrentTask(updatedTask);
+              return updatedTask;
+            } else return el;
+          });
 
-        console.log(doneTime);
-      }, 1000);
+        setTasks(updatedList);
+      }, 100);
 
-      // if done time is > 60 min add 1 hour of done
       console.log('start Task', task);
     } else if (task.active == false) {
-      console.log(doneTime);
       clearInterval(interval.current);
-      console.log('stop task', task);
+      console.log('stop task', currentTask);
     }
   };
 
@@ -133,7 +148,7 @@ const Desktop: React.FC<{}> = () => {
     <Box className={styles.container}>
       <Box className={styles.columnLeft}>
         <Box>
-          {currentTask && (
+          {currentTask && currentTask.length != 0 && (
             <Box>
               <Typography
                 variant="body1"
@@ -173,7 +188,6 @@ const Desktop: React.FC<{}> = () => {
               />
             </Box>
           )}
-
           <Typography
             variant="body1"
             fontWeight={700}
@@ -186,26 +200,28 @@ const Desktop: React.FC<{}> = () => {
             fontWeight={200}
             className={styles.totalTimeLeft}
           >
-            Total time left: <strong>{calculateTotalTime(tasks)}</strong>
+            Total time left:
+            <strong>{tasks ? calculateTotalTime(tasks) : '0h 0m'}</strong>
           </Typography>
           <Typography
             color="primary"
             fontWeight={200}
             className={styles.totalTimeLeft}
           >
-            Total time completed: <strong>{calculateDoneTime(tasks)}</strong>
+            Total time completed:
+            <strong>{tasks ? calculateDoneTime(tasks) : '0h 0m'}</strong>
           </Typography>
-
-          {tasks.map((task) => (
-            <Task
-              title={task.title}
-              icon={displayIcon(task.icon)}
-              id={task.id}
-              setActive={setActive}
-              active={task.active}
-              key={task.id}
-            />
-          ))}
+          {tasks &&
+            tasks.map((task) => (
+              <Task
+                title={task.title}
+                icon={displayIcon(task.icon)}
+                id={task.id}
+                setActive={setActive}
+                active={task.active}
+                key={task.id}
+              />
+            ))}
         </Box>
       </Box>
       <Box className={styles.columnRight}>
