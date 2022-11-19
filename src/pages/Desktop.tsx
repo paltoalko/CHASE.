@@ -7,8 +7,9 @@ import {
   Backdrop,
   Fade,
   Modal,
-  ListItem,
-  Slide,
+  Alert,
+  Collapse,
+  IconButton,
 } from '@mui/material';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import TaskForm from 'components/Desktop/TaskForm';
@@ -19,12 +20,16 @@ import {
   calculateTime,
 } from 'components/helpers/timeCounter';
 import { Task, TaskActive } from 'components/Desktop/Task';
+import TaskFinished from 'components/Desktop/TaskFinished';
+import CloseIcon from '@mui/icons-material/Close';
 
 const Desktop: React.FC<{}> = () => {
-  const [timeCompleted, setTimeCompleted] = useState(3);
   const [dateState, setDateState] = useState(new Date());
   const [open, setOpen] = useState(false);
-  const [preloadedTask, setPreloadedTask] = useState(null);
+  const [taskFinished, setTaskFinished] = useState();
+  const [finishedAlert, setFinishedAlert] = useState(false);
+  const [activeAlert, setActiveAlert] = useState(false);
+  const [preloadedTask, setPreloadedTask] = useState({} || null);
   const [tasks, setTasks] = useState(() => {
     const savedTasks = localStorage.getItem('tasks');
 
@@ -45,9 +50,9 @@ const Desktop: React.FC<{}> = () => {
   });
 
   const interval = useRef(null);
-  const [time, setTime] = useState<number>();
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const closeTaskFinished = () => setFinishedAlert(false);
 
   useEffect(() => {
     currentTask && currentTask.length != 0 && startTimer(currentTask);
@@ -59,8 +64,9 @@ const Desktop: React.FC<{}> = () => {
 
   useEffect(() => {
     if (currentTask && currentTask.minutes + currentTask.hours == 0) {
+      setTaskFinished(currentTask);
+      setFinishedAlert(true);
       setActive(currentTask.id);
-      alert('Task Completed, add more time if needed');
     }
   }, [currentTask]);
 
@@ -73,6 +79,8 @@ const Desktop: React.FC<{}> = () => {
     const updatedList = tasks.map((task) => {
       if (task.id == id) {
         if (task.active == false) {
+          currentTask &&
+            ((currentTask.active = false), startTimer(currentTask));
           const taskActive = { ...task, active: !task.active };
           setCurrentTask(taskActive);
           startTimer(taskActive);
@@ -90,8 +98,8 @@ const Desktop: React.FC<{}> = () => {
   };
 
   const startTimer = (task) => {
-    setTime(0);
     let displayedTime = 0;
+    console.log('display time', task);
 
     if (task.active == true) {
       interval.current = setInterval(() => {
@@ -99,7 +107,6 @@ const Desktop: React.FC<{}> = () => {
           tasks &&
           tasks.map((el) => {
             if (el.id == task.id) {
-              setTime((prevTime) => prevTime + 1);
               displayedTime++;
               const updatedTask = calculateTime(task, displayedTime);
               setCurrentTask(updatedTask);
@@ -109,11 +116,8 @@ const Desktop: React.FC<{}> = () => {
 
         setTasks(updatedList);
       }, 100);
-
-      console.log('start Task', task);
     } else if (task.active == false) {
       clearInterval(interval.current);
-      console.log('stop task', currentTask);
     }
   };
 
@@ -132,8 +136,20 @@ const Desktop: React.FC<{}> = () => {
     setTasks([...tasks, task]);
   };
 
-  const changeTask = (data) => {
-    console.log(data);
+  const changeTask = (id) => {
+    // const obj = tasks.find((el) => el.id == id);
+    // setPreloadedTask(obj);
+    // setOpen(true);
+  };
+
+  const deleteTask = (id) => {
+    if (currentTask) {
+      setActiveAlert(true);
+      return;
+    } else {
+      const updatedList = tasks.filter((task) => task.id != id);
+      setTasks(updatedList);
+    }
   };
 
   const displayIcon = (value) => {
@@ -146,8 +162,39 @@ const Desktop: React.FC<{}> = () => {
 
   return (
     <Box className={styles.container}>
+      {finishedAlert && (
+        <TaskFinished
+          title={taskFinished.title}
+          id={taskFinished.id}
+          handleClose={closeTaskFinished}
+          deleteTask={deleteTask}
+          open={finishedAlert}
+        />
+      )}
       <Box className={styles.columnLeft}>
         <Box>
+          <Box sx={{ width: '100%' }}>
+            <Collapse in={activeAlert}>
+              <Alert
+                severity="error"
+                action={
+                  <IconButton
+                    aria-label="close"
+                    color="inherit"
+                    size="small"
+                    onClick={() => {
+                      setActiveAlert(false);
+                    }}
+                  >
+                    <CloseIcon fontSize="inherit" />
+                  </IconButton>
+                }
+                sx={{ mb: 2 }}
+              >
+                Please stop current task before deleting other tasks.
+              </Alert>
+            </Collapse>
+          </Box>
           {currentTask && currentTask.length != 0 && (
             <Box>
               <Typography
@@ -218,6 +265,8 @@ const Desktop: React.FC<{}> = () => {
                 icon={displayIcon(task.icon)}
                 id={task.id}
                 setActive={setActive}
+                deleteTask={deleteTask}
+                changeTask={changeTask}
                 active={task.active}
                 key={task.id}
               />
@@ -255,13 +304,12 @@ const Desktop: React.FC<{}> = () => {
         </Box>
         <Box className={styles.dateContainer}>
           <Typography fontWeight={600} className={styles.taskHeaderTime}>
-            {/* {dateState.toLocaleString('en-US', {
+            {dateState.toLocaleString('en-US', {
               hour: 'numeric',
               minute: 'numeric',
               second: 'numeric',
               hour12: false,
-            })} */}
-            12:22
+            })}
           </Typography>
           <Typography fontWeight={600} className={styles.taskHeaderDay}>
             {dateState.toLocaleDateString('en-GB', {
