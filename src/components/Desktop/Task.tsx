@@ -1,22 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from '../../assets/styles/Desktop.module.css';
-import {
-  Box,
-  Button,
-  Typography,
-  IconButton,
-  Backdrop,
-  Fade,
-  Modal,
-} from '@mui/material';
-
+import { Box, Typography, IconButton } from '@mui/material';
 import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
-import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
-import MoreTimeOutlinedIcon from '@mui/icons-material/MoreTimeOutlined';
-import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded';
 import StopRoundedIcon from '@mui/icons-material/StopRounded';
 import TuneIcon from '@mui/icons-material/Tune';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 interface TaskProps {
   title: string;
@@ -24,9 +13,19 @@ interface TaskProps {
   id: number;
   active: boolean;
   setActive: (id: number) => void;
+  deleteTask: (id: number) => void;
+  changeTask: (id: number) => void;
 }
 
-const Task: React.FC<TaskProps> = ({ title, icon, id, active, setActive }) => {
+const Task: React.FC<TaskProps> = ({
+  title,
+  icon,
+  id,
+  active,
+  setActive,
+  deleteTask,
+  changeTask,
+}) => {
   return (
     !active && (
       <Box className={styles.taskContainer}>
@@ -38,8 +37,21 @@ const Task: React.FC<TaskProps> = ({ title, icon, id, active, setActive }) => {
             </Typography>
           </Box>
 
-          <IconButton size="small">
+          <IconButton
+            size="small"
+            onClick={() => {
+              changeTask(id);
+            }}
+          >
             <TuneIcon className={styles.icon} />
+          </IconButton>
+          <IconButton
+            size="small"
+            onClick={() => {
+              deleteTask(id);
+            }}
+          >
+            <DeleteForeverIcon className={styles.icon} />
           </IconButton>
         </Box>
 
