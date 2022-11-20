@@ -23,4 +23,4 @@ Icons: https://mui.com/material-ui/material-icons/
 
 1.  Clone repository to your local machine.
 2.  Install npm packages, by using 'npm i' in project folder.
-3.  Run app by typing 'npm start'
+3.  Run app by typing 'npm start'.
