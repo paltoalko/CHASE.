@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from '../../assets/styles/helpers/TopContainer.module.css';
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
 
 interface Iprops {

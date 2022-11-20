@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  Box,
-  Container,
-  Typography,
-  Button,
-  useMediaQuery,
-} from '@mui/material';
+import { Box, Typography, Button, useMediaQuery } from '@mui/material';
 import { ReactComponent as Waves } from '../assets/svg/footerWaves.svg';
 import styles from '../assets/styles/Footer.module.css';
 import { Link } from 'react-router-dom';
@@ -25,7 +19,7 @@ const HeaderLink: React.FC<LinkProps> = ({ path, title }) => {
   );
 };
 
-const Footer: React.FC<{}> = ({}) => {
+const Footer: React.FC<{}> = () => {
   const matches = useMediaQuery('(min-width:768px)');
   return (
     <Box className={styles.footer}>

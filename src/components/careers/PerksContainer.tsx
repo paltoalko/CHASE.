@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styles from '../../assets/styles/helpers/PerksContainer.module.css';
 import { Box, Typography } from '@mui/material';
 import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
@@ -47,11 +47,9 @@ const ListItem: React.FC<Iprops> = ({ title, description, svg }) => {
   );
 };
 
-const PerksContainer: React.FC<{}> = ({}) => {
+const PerksContainer: React.FC<{}> = () => {
   return (
     <Box className={styles.container}>
-      {/* mobile view => list and browser view => reveal cursor */}
-
       <Box className={styles.listMobile}>
         <ListItem
           title="Remote Work"

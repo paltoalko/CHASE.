@@ -3,10 +3,8 @@ import { ReactComponent as Waves } from '../assets/svg/waves-mobile.svg';
 import { ReactComponent as Iphone } from '../assets/svg/iphone-mobile.svg';
 import { ReactComponent as Appstore } from '../assets/svg/appstore.svg';
 import { ReactComponent as Google } from '../assets/svg/googleplay.svg';
-
 import styles from '../assets/styles/Start.module.css';
 import { Box, Button, Typography } from '@mui/material';
-
 import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
 import ActivityBox from '../components/start/ActivityBox';
 import ReviewBox from '../components/start/ReviewsBox';
@@ -16,7 +14,7 @@ interface ButtonProps {
   store: string;
   title: string;
   icon: ReactJSXElement;
-  onPress?(): void;
+  onPress?: () => void;
 }
 
 const StoreButton: React.FC<ButtonProps> = ({

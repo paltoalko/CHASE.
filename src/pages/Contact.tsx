@@ -38,7 +38,7 @@ const ContactBox: React.FC<ContactProps> = ({ title, text, icon, onPress }) => {
   );
 };
 
-const Contact: React.FC<{}> = ({}) => {
+const Contact: React.FC<{}> = () => {
   return (
     <Box className={styles.container}>
       <TopContainer

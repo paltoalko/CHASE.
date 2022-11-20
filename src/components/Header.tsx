@@ -16,7 +16,7 @@ import { Link } from 'react-router-dom';
 interface LinkProps {
   path: string;
   title: string;
-  onClick?(): any;
+  onClick?: () => void;
 }
 
 const HeaderLink: React.FC<LinkProps> = ({ path, title, onClick }) => {
@@ -35,8 +35,7 @@ const HeaderLink: React.FC<LinkProps> = ({ path, title, onClick }) => {
   );
 };
 
-const Header: React.FC<{}> = ({}) => {
-  // fix transition effect
+const Header: React.FC<{}> = () => {
   const matches = useMediaQuery('(min-width:768px)');
   const [open, setOpen] = useState(true);
   const ref = useRef(null);

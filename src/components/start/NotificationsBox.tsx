@@ -1,12 +1,12 @@
 import React from 'react';
 import styles from '../../assets/styles/NotificationsBox.module.css';
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import Notification1 from '../../assets/images/notification1.png';
 import Notification2 from '../../assets/images/notification2.png';
 import Notification3 from '../../assets/images/notification3.png';
 import code from '../../assets/images/code.png';
 
-const NotificationsBox: React.FC<{}> = ({}) => {
+const NotificationsBox: React.FC<{}> = () => {
   return (
     <Box className={styles.container}>
       <Typography
