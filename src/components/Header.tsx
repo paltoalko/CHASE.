@@ -57,7 +57,7 @@ const Header: React.FC<{}> = () => {
   }, []);
   return matches ? (
     <Box className={styles.header}>
-      <Link to="/">
+      <Link to="/CHASE.">
         <Logo className={styles.logo} />
       </Link>
       <Box className={styles.buttonsContainer}>

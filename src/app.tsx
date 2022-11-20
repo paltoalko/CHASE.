@@ -14,10 +14,10 @@ function App() {
         <Router>
           <Header />
           <Routes>
-            <Route path="/" element={<Start />}></Route>
-            <Route path="/contact" element={<Contact />}></Route>
-            <Route path="/careers" element={<Careers />}></Route>
-            <Route path="/desktop" element={<Desktop />}></Route>
+            <Route path="CHASE./" element={<Start />}></Route>
+            <Route path="CHASE./contact" element={<Contact />}></Route>
+            <Route path="CHASE./careers" element={<Careers />}></Route>
+            <Route path="CHASE./desktop" element={<Desktop />}></Route>
           </Routes>
           <Footer />
         </Router>
