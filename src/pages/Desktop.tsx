@@ -50,7 +50,9 @@ const Desktop: React.FC<{}> = () => {
   });
 
   const interval = useRef(null);
-  const handleOpen = () => setOpen(true);
+  const handleOpen = () => {
+    setPreloadedTask(null), setOpen(true);
+  };
   const handleClose = () => setOpen(false);
   const closeTaskFinished = () => setFinishedAlert(false);
 
@@ -136,10 +138,32 @@ const Desktop: React.FC<{}> = () => {
     setTasks([...tasks, task]);
   };
 
+  const changedTaskHandler = (data, id) => {
+    const updatedList = tasks.map((el) => {
+      if (el.id == id) {
+        const task = {
+          ...el,
+          title: data.title,
+          icon: data.icon,
+          hours: data.hours,
+          minutes: data.minutes,
+        };
+        return task;
+      } else return el;
+    });
+    setTasks(updatedList);
+  };
+
   const changeTask = (id) => {
-    // const obj = tasks.find((el) => el.id == id);
-    // setPreloadedTask(obj);
-    // setOpen(true);
+    const obj = tasks.find((el) => el.id == id);
+    const values = {
+      ...obj,
+      minutes: obj.minutes,
+      hours: obj.hours,
+    };
+    console.log(obj.hours);
+    setPreloadedTask(values);
+    setOpen(true);
   };
 
   const deleteTask = (id) => {
@@ -294,7 +318,7 @@ const Desktop: React.FC<{}> = () => {
               <Box className={styles.modal}>
                 <TaskForm
                   newTaskHandler={newTaskHandler}
-                  changeTask={changeTask}
+                  changedTaskHandler={changedTaskHandler}
                   handleExit={handleClose}
                   preloadedValues={preloadedTask}
                 />

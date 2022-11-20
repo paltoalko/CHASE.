@@ -17,15 +17,15 @@ import { FormValues } from '../helpers/typings';
 
 interface TaskProps {
   newTaskHandler: (data: object) => void;
+  changedTaskHandler: (data: object, id: number) => void;
   preloadedValues: FormValues;
-  changeTask: (data: object, id: number) => void;
   handleExit(): void;
 }
 
 const TaskForm: React.FC<TaskProps> = ({
   newTaskHandler,
+  changedTaskHandler,
   preloadedValues,
-  changeTask,
   handleExit,
 }) => {
   const {
@@ -39,7 +39,7 @@ const TaskForm: React.FC<TaskProps> = ({
   });
   const handleClick = (data) => {
     preloadedValues
-      ? changeTask(data, preloadedValues.id)
+      ? changedTaskHandler(data, preloadedValues.id)
       : newTaskHandler(data);
     reset(data);
     handleExit();
@@ -138,6 +138,7 @@ const TaskForm: React.FC<TaskProps> = ({
                   {...field}
                   onChange={(value) => field.onChange(value)}
                   valueLabelDisplay="auto"
+                  value={value || 0}
                   max={24}
                   step={1}
                   marks={marks}
@@ -164,6 +165,8 @@ const TaskForm: React.FC<TaskProps> = ({
                   {...field}
                   onChange={(value) => field.onChange(value)}
                   valueLabelDisplay="auto"
+                  // key={`slider2-${value}`}
+                  value={value || 0}
                   max={59}
                   step={1}
                   marks={minuteMarks}
