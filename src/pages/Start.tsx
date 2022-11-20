@@ -57,7 +57,7 @@ const StoreButton: React.FC<ButtonProps> = ({
   );
 };
 
-const Start: React.FC<{}> = ({}) => {
+const Start: React.FC<{}> = () => {
   return (
     <Box className={styles.homeContainer}>
       <Box className={styles.topContainer}>
@@ -69,12 +69,13 @@ const Start: React.FC<{}> = ({}) => {
             <StoreButton
               store="AppStore"
               title="Download on the"
-              onPress={() => console.log('lol')}
+              onPress={() => console.log('Open AppStore')}
               icon={<Appstore color={'#ffffff'} height="3em" width="3em" />}
             />
             <StoreButton
               store="Google Play"
               title="Get it on"
+              onPress={() => console.log('Open Google Play')}
               icon={<Google color={'#ffffff'} height="3em" width="3em" />}
             />
           </Box>

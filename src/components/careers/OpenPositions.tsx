@@ -49,9 +49,9 @@ const Card: React.FC<Iprops> = ({
   );
 };
 
-const OpenPositions: React.FC<{}> = ({}) => {
+const OpenPositions: React.FC<{}> = () => {
   const handlePress = () => {
-    console.log('apply now');
+    console.log('Write a message');
   };
   return (
     <Box className={styles.wrapper3}>

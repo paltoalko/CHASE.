@@ -11,10 +11,10 @@ interface TaskProps {
   title: string;
   icon?: ReactJSXElement;
   id: number;
-  active: boolean;
+  active?: boolean;
   setActive: (id: number) => void;
-  deleteTask: (id: number) => void;
-  changeTask: (id: number) => void;
+  deleteTask?: (id: number) => void;
+  changeTask?: (id: number) => void;
 }
 
 const Task: React.FC<TaskProps> = ({

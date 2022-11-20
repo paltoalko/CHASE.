@@ -22,14 +22,15 @@ import {
 import { Task, TaskActive } from 'components/Desktop/Task';
 import TaskFinished from 'components/Desktop/TaskFinished';
 import CloseIcon from '@mui/icons-material/Close';
+import { FormValues, TaskType } from 'components/helpers/typings';
 
 const Desktop: React.FC<{}> = () => {
   const [dateState, setDateState] = useState(new Date());
   const [open, setOpen] = useState(false);
-  const [taskFinished, setTaskFinished] = useState();
+  const [taskFinished, setTaskFinished] = useState<TaskType>();
   const [finishedAlert, setFinishedAlert] = useState(false);
   const [activeAlert, setActiveAlert] = useState(false);
-  const [preloadedTask, setPreloadedTask] = useState({} || null);
+  const [preloadedTask, setPreloadedTask] = useState<FormValues>('' || null);
   const [tasks, setTasks] = useState(() => {
     const savedTasks = localStorage.getItem('tasks');
 
@@ -101,7 +102,6 @@ const Desktop: React.FC<{}> = () => {
 
   const startTimer = (task) => {
     let displayedTime = 0;
-    console.log('display time', task);
 
     if (task.active == true) {
       interval.current = setInterval(() => {
@@ -161,7 +161,6 @@ const Desktop: React.FC<{}> = () => {
       minutes: obj.minutes,
       hours: obj.hours,
     };
-    console.log(obj.hours);
     setPreloadedTask(values);
     setOpen(true);
   };
@@ -188,8 +187,8 @@ const Desktop: React.FC<{}> = () => {
     <Box className={styles.container}>
       {finishedAlert && (
         <TaskFinished
-          title={taskFinished.title}
-          id={taskFinished.id}
+          title={taskFinished?.title}
+          id={taskFinished?.id}
           handleClose={closeTaskFinished}
           deleteTask={deleteTask}
           open={finishedAlert}
