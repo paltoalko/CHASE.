@@ -117,7 +117,7 @@ const Desktop: React.FC<{}> = () => {
           });
 
         setTasks(updatedList);
-      }, 100);
+      }, 60000);
     } else if (task.active == false) {
       clearInterval(interval.current);
     }
