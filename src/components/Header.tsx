@@ -61,9 +61,9 @@ const Header: React.FC<{}> = () => {
         <Logo className={styles.logo} />
       </Link>
       <Box className={styles.buttonsContainer}>
-        <HeaderLink path="/desktop" title="Desktop Version" />
-        <HeaderLink path="/contact" title="Contact" />
-        <HeaderLink path="/careers" title="Careers" />
+        <HeaderLink path="CHASE./desktop" title="Desktop Version" />
+        <HeaderLink path="CHASE./contact" title="Contact" />
+        <HeaderLink path="CHASE./careers" title="Careers" />
       </Box>
     </Box>
   ) : (
@@ -87,15 +87,19 @@ const Header: React.FC<{}> = () => {
       <Logo className={styles.logo} />
       <Slide in={!open} direction="left" mountOnEnter unmountOnExit>
         <Box className={styles.buttonsContainer}>
-          <HeaderLink path="/" title="Home" onClick={() => handleClick()} />
+          <HeaderLink
+            path="/CHASE."
+            title="Home"
+            onClick={() => handleClick()}
+          />
 
           <HeaderLink
-            path="/contact"
+            path="CHASE./contact"
             title="Contact"
             onClick={() => handleClick()}
           />
           <HeaderLink
-            path="/careers"
+            path="CHASE./careers"
             title="Careers"
             onClick={() => handleClick()}
           />
