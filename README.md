@@ -1,6 +1,6 @@
 # CHASE.
 
-Example website for mobile app + with demo desktop version.
+Example website for mobile app + with demo desktop version. Created with MUI and React Hook Forms.
 _This is only a showcase website, there is not an actual CHASE. app._
 
 ## About CHASE. and idea behind it
@@ -17,4 +17,10 @@ Illustrations: https://undraw.co/illustrations
 
 Wave generator: https://app.haikei.app/
 
-Icons: https://ionic.io/ionicons
+Icons: https://mui.com/material-ui/material-icons/
+
+### Steps to reproduce:
+
+1.  Clone repository to your local machine.
+2.  Install npm packages, by using 'npm i' in project folder.
+3.  Run app by typing 'npm start'
