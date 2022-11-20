@@ -88,11 +88,7 @@ const Header: React.FC<{}> = () => {
       <Slide in={!open} direction="left" mountOnEnter unmountOnExit>
         <Box className={styles.buttonsContainer}>
           <HeaderLink path="/" title="Home" onClick={() => handleClick()} />
-          <HeaderLink
-            path="/desktop"
-            title="Desktop Version"
-            onClick={() => handleClick()}
-          />
+
           <HeaderLink
             path="/contact"
             title="Contact"
