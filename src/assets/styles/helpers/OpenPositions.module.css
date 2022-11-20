@@ -1,0 +1,48 @@
+.wrapper {
+  display: flex;
+  gap: 5em;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+}
+
+.card {
+  border-radius: 15px;
+  height: 300px;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  padding: 1em;
+  background-color: rgb(19, 18, 19);
+  box-shadow: rgba(245, 245, 245, 0.06) 0px 2px 4px 0px inset;
+  position: relative;
+}
+
+.wrapper3 {
+  width: 100%;
+  height: auto;
+}
+
+.wrapper2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon {
+  font-size: 10em !important;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  color: #cdb3c139;
+  width: 70%;
+  height: auto;
+  opacity: 0.2;
+}
+
+@media only screen and (max-width: 960px) {
+}
+@media only screen and (min-width: 960px) {
+}

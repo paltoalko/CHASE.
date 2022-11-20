@@ -1,31 +1,67 @@
-.footerContainer {
-  z-index: 1000;
+.svg {
+  position: absolute;
+  z-index: -10;
+}
+.container {
+  margin-top: 22em;
+  position: relative;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  pointer-events: none;
+  align-items: flex-end;
+}
+
+.footer {
+  margin-top: auto !important;
 }
 
 .buttonsContainer {
-  width: 100%;
   display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
-  z-index: 1000;
+  width: 100%;
+  padding: 0.5em;
 }
 
 .linksContainer {
-  pointer-events: auto;
+  margin-right: auto;
 }
 
-.waves {
-  width: 100%;
-  z-index: 1;
-  position: relative;
+@media only screen and (max-width: 480px) {
+  .container {
+    margin-top: 5em;
+    justify-content: center;
+  }
 }
 
-.authorContainer {
-  padding: 6px 16px;
+@media only screen and (min-width: 480px) and (max-width: 768px) {
+  .buttonsContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .container {
+    margin-top: 10em;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1200px) {
+  .container {
+    margin-top: 15em;
+  }
+}
+@media only screen and (min-width: 1600px) and (max-width: 2000px) {
+  .container {
+    margin-top: 30em;
+  }
+}
+@media only screen and (min-width: 2000px) and (max-width: 2500px) {
+  .container {
+    margin-top: 35em;
+  }
+}
+@media only screen and (min-width: 2500px) {
+  .container {
+    margin-top: 45em;
+  }
 }

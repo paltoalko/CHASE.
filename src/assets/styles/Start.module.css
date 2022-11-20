@@ -1,11 +1,126 @@
-.wave {
-  width: 100%;
+.svg {
+  position: absolute;
+  bottom: 0;
+  z-index: -10;
+}
+.iphone {
+  margin: 1em;
 }
 
-.homeContainer {
-  margin-top: 1vh;
+.wavesContainer {
+  margin-top: 50vh;
+  position: relative;
 }
 
 .topContainer {
+  margin-top: 1em;
+  padding: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  flex-wrap: wrap;
+}
+
+.subheader,
+.subheader2 {
   text-align: center;
+}
+
+.subheader2 {
+  margin-bottom: 10vh !important;
+}
+.homeContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.buttonBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+  gap: 1em;
+}
+
+.buttonsContainer {
+  margin-left: auto;
+}
+
+.header {
+  padding: 1em;
+  display: flex;
+}
+
+/* .buttons {
+  text-align: center;
+} */
+
+@media only screen and (max-width: 480px) {
+  .homeContainer {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .subheader,
+  .subheader2 {
+    font-size: 1em !important;
+    text-align: center;
+  }
+
+  .subheader2 {
+    margin-bottom: 1.5em !important;
+  }
+
+  .wavesContainer {
+    margin-top: 7em;
+  }
+
+  .iphone {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.85;
+  }
+  .svgIphone {
+    width: 150px;
+    height: auto;
+  }
+
+  .buttonBox {
+    text-align: center;
+  }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 600px) {
+  .subheader2 {
+    margin-bottom: 3vh !important;
+  }
+  .svgIphone {
+    width: 300px;
+    height: auto;
+  }
+  .wavesContainer {
+    margin-top: 15vh;
+  }
+}
+@media only screen and (min-width: 600px) and (max-width: 900px) {
+  .subheader2 {
+    margin-bottom: 5vh !important;
+  }
+
+  .svgIphone {
+    width: 300px;
+    height: auto;
+  }
+  .wavesContainer {
+    margin-top: 30vh;
+  }
+}
+@media only screen and (min-width: 900px) and (max-width: 1100px) {
+  .svgIphone {
+    width: 350px;
+    height: auto;
+  }
 }

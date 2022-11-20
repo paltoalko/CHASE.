@@ -1,0 +1,93 @@
+.svg {
+  height: auto;
+}
+
+.container {
+  position: relative;
+}
+
+@media only screen and (max-width: 960px) {
+  .svg {
+    width: 60vw;
+    height: auto;
+    opacity: 0.3;
+  }
+  .text {
+    position: absolute;
+    top: 25%;
+    z-index: 99;
+  }
+
+  .description {
+    font-size: 1em !important;
+  }
+
+  .listItemMobile {
+    position: relative;
+  }
+
+  .listMobile {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+    margin-top: 2em;
+    flex-direction: column;
+  }
+
+  .textBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+@media only screen and (min-width: 960px) {
+  .text {
+    position: absolute;
+    top: 50%;
+    z-index: 99;
+    cursor: default;
+  }
+
+  .description {
+    opacity: 0;
+    transition: 1s !important;
+  }
+
+  .listItemMobile:hover .svg {
+    opacity: 0.1;
+  }
+
+  .listItemMobile:hover .description {
+    opacity: 1;
+  }
+
+  .listItemMobile {
+    position: relative;
+  }
+
+  .listMobile {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 5em;
+    margin-top: 5em;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  .textBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .svg {
+    width: 30vw;
+    height: auto;
+    opacity: 0.6;
+    transition: 1s;
+  }
+}

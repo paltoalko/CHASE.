@@ -1,11 +1,49 @@
-.headerContainer {
-  margin: 16px 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
+@media only screen and (max-width: 768px) {
+  .buttonsContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2em;
+    transition: 1s;
+    background-color: #7b6c85;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 30%;
+    z-index: 1000;
+  }
+
+  .menuButton {
+    position: fixed;
+    z-index: 99999 !important;
+    top: 0.25em;
+    right: 0.25em;
+    z-index: 100;
+    font-size: 2.5em !important;
+  }
+
+  .menuContainer {
+    right: 0;
+  }
+  .logo {
+    padding: 1em;
+  }
+
+  .smallHeader {
+    background-color: #52475a;
+    width: 100%;
+  }
 }
 
-.buttonsContainer {
-  margin-left: auto;
+@media only screen and (min-width: 768px) {
+  .header {
+    padding: 1em;
+    display: flex;
+  }
+
+  .buttonsContainer {
+    margin-left: auto;
+  }
 }

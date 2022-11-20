@@ -1,0 +1,90 @@
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 200%;
+  width: 100%;
+  overflow: hidden;
+  z-index: -100;
+  margin-top: -120px;
+  opacity: 0.1;
+}
+
+.container {
+  position: relative;
+  margin: 2em 0;
+}
+.notificationBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+}
+.subheader2 {
+  font-size: 1.5em !important;
+  text-align: center;
+}
+
+.subheader {
+  margin: 0.5em !important;
+  font-size: 2.5em !important;
+  text-align: center;
+}
+.container {
+  padding: 1em;
+}
+
+img {
+  width: 340px;
+  height: auto;
+}
+
+@media only screen and (max-width: 480px) {
+  img {
+    width: 70%;
+    height: auto;
+  }
+
+  .background {
+    height: 130%;
+    margin-top: -40px;
+  }
+  .subheader2 {
+    font-size: 1em !important;
+  }
+
+  .subheader {
+    font-size: 1em !important;
+  }
+  .container {
+    margin: 0;
+  }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 768px) {
+  .background {
+    height: 175%;
+  }
+  .subheader2 {
+    font-size: 1em !important;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .background {
+    height: 160%;
+  }
+  .subheader2 {
+    font-size: 1em !important;
+  }
+}
+@media only screen and (min-width: 1024px) and (max-width: 1400px) {
+  .background {
+    height: 170%;
+  }
+}
+@media only screen and (min-width: 2300px) {
+  .background {
+    height: 220%;
+  }
+}
