@@ -190,7 +190,7 @@ const TaskForm: React.FC<TaskProps> = ({
             type="submit"
             size="large"
           >
-            Zapisz
+            Save
           </Button>
           <Button
             variant="contained"
@@ -198,7 +198,7 @@ const TaskForm: React.FC<TaskProps> = ({
             size="large"
             onClick={() => handleExit()}
           >
-            Wyjdź
+            Exit
           </Button>
         </Box>
       </form>
